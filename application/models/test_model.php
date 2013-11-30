@@ -4,7 +4,7 @@ class Test_model extends CI_Model {
 	public function __construct()
 	{
 		$this->load->database();
-		$this->load->library('SSH');
+		//$this->load->library('SSH');
 	}
 	
 	public function testQuery(){
