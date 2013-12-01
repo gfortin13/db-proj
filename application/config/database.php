@@ -48,22 +48,37 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'clipper.encs.concordia.ca';
-$db['default']['username'] = 'pyc353_2';
-$db['default']['password'] = 'FMaqRb';
-$db['default']['database'] = 'pyc353_2';
-$db['default']['dbdriver'] = 'mysql';
-$db['default']['dbprefix'] = '';
-$db['default']['pconnect'] = TRUE;
-$db['default']['db_debug'] = TRUE;
-$db['default']['cache_on'] = FALSE;
-$db['default']['cachedir'] = '';
-$db['default']['char_set'] = 'utf8';
-$db['default']['dbcollat'] = 'utf8_general_ci';
-$db['default']['swap_pre'] = '';
-$db['default']['autoinit'] = TRUE;
-$db['default']['stricton'] = FALSE;
+$db['main']['hostname'] = 'clipper.encs.concordia.ca';
+$db['main']['username'] = 'pyc353_2';
+$db['main']['password'] = 'FMaqRb';
+$db['main']['database'] = 'pyc353_2';
+$db['main']['dbdriver'] = 'mysql';
+$db['main']['dbprefix'] = '';
+$db['main']['pconnect'] = TRUE;
+$db['main']['db_debug'] = TRUE;
+$db['main']['cache_on'] = FALSE;
+$db['main']['cachedir'] = '';
+$db['main']['char_set'] = 'utf8';
+$db['main']['dbcollat'] = 'utf8_general_ci';
+$db['main']['swap_pre'] = '';
+$db['main']['autoinit'] = TRUE;
+$db['main']['stricton'] = FALSE;
 
+$db['readonly']['hostname'] = 'clipper.encs.concordia.ca';
+$db['readonly']['username'] = 'cs353_2';
+$db['readonly']['password'] = 'letmein';
+$db['readonly']['database'] = 'cs353db';
+$db['readonly']['dbdriver'] = 'mysql';
+$db['readonly']['dbprefix'] = '';
+$db['readonly']['pconnect'] = TRUE;
+$db['readonly']['db_debug'] = TRUE;
+$db['readonly']['cache_on'] = FALSE;
+$db['readonly']['cachedir'] = '';
+$db['readonly']['char_set'] = 'utf8';
+$db['readonly']['dbcollat'] = 'utf8_general_ci';
+$db['readonly']['swap_pre'] = '';
+$db['readonly']['autoinit'] = TRUE;
+$db['readonly']['stricton'] = FALSE;
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */

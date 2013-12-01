@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'https://clipper.encs.concordia.ca/~pyc353_2/';
+$config['base_url']	= 'https://clipper.encs.concordia.ca/~pyc353_2';
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ $config['base_url']	= 'https://clipper.encs.concordia.ca/~pyc353_2/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = 'index.php?';
 
 /*
 |--------------------------------------------------------------------------
@@ -224,7 +224,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'thisclasssucks';
 
 /*
 |--------------------------------------------------------------------------

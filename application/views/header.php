@@ -3,6 +3,9 @@
 	<meta charset="utf-8">
 	<title><?php echo $title; ?></title>
 
+	<link type="text/css" href="static/css/main.css" rel="stylesheet">
+
+	<script type="text/javascript" src="static/js/jquery-1.8.3.min.js"></script>
 </head>
 <body>
 
