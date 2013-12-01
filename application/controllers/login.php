@@ -79,15 +79,21 @@ class Login extends CI_Controller {
 	}
 
 	private function _less_than24H($user){
-		/*$datetime1 = new DateTime($user['date_created']);
+		$datetime1 = new DateTime($user['date_created']);
 		$datetime2 = new DateTime(date("Y-m-d H:i:s"));
-		$interval = $datetime1->diff($datetime2);
-		if($interval->format('%i') < 1440){
+		
+		$dateseconds1 = (int)$datetime1->format('U');
+		$dateseconds2 = (int)$datetime2->format('U');
+		//echo ($dateseconds2 - $dateseconds1)/3600;
+		//die;
+
+		//$interval = $datetime1->diff($datetime2);
+		if((($dateseconds2-$dateseconds1)/3600) < 24){
 			return TRUE;
 		}
 		else{
 			return false;
-		}*/
-		return true;
+		}
+		//return true;
 	}
 }
