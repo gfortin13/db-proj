@@ -43,7 +43,7 @@ class AdminLogin extends CI_Controller {
 			
 		}
 	}
-	public function validateAdmin{
+	public function validateAdmin(){
 		$data['credential'] = $this->input->post();
 		$this->admin = $this->data_model->getAdminWithCredentials($data['credential']);
 	if($this->admin){
