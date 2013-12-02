@@ -11,7 +11,8 @@ class Conference_creation extends CI_Controller {
 
 	public function index()
 	{
-		if(isset($this->session->userdata('admin_logged'))){
+		$data['admin'] = $this->session->userdata('admin_logged');
+		if(isset($data['admin'])){
 			$this->load->helper('form');
 			$this->load->library('form_validation');
 

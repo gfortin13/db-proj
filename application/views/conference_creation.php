@@ -19,7 +19,7 @@
             <label for="hierarchy" >Subject Hierarchy Class: </label> 
             <select name="hierarchy">
                 <?php foreach ($hierarchy as $key => $hier) { ?>
-                    <option value="<?php echo $hier['shid']; ?>" <?php echo set_select('hierarchy', $hier['shid']); ?>><?php for($i = 0; $i <= $hier['level']; $i++){echo "   ";} echo $hier['full_level_name'] . " " . $hier['cname']; ?></option>
+                    <option value="<?php echo $hier['shid']; ?>" <?php echo set_select('hierarchy', $hier['shid']); ?>><?php for($i = 0; $i < $hier['level']; $i++){echo "   ";} echo $hier['full_level_name'] . " " . $hier['cname']; ?></option>
                 <?php } ?>
             </select> <span class="red">*</span>
         </p>
