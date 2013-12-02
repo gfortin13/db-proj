@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="author" content="Solucija (www.solucija.com)" />
+	<link rel="stylesheet" href="css/main.css" type="text/css" />
+	<link rel="stylesheet" href="css/tables.css" type="text/css" />
+	<title>CONFSYS</title>
+
+	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<div id="header">
+		<div class="wrap">
+			<h1 id="logo"><a href="#">CONFSYS</a></h1>
+		
+			<ul id="menu">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Change Event</a></li>
+				<li><a class="current" href="#">Login</a></li>
+				<li class="last"><a href="#">Settings</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="wrap">
+		<h2>Submit new Paper</h2>
+		<br/>
+		Uploading paper period is from<div id="paperUploadPeriodText"/>
+		<br/><p>You could make changes to Title, Abstract, add authors, delete authors, change paper file, only during this period. No adding or deleting of authors is permitted after this period.</p>
+		<form>
+			<table >
+				<th></th>
+				<th></th>
+				<tr>
+					<td align="right">Paper Title : </td>
+					<td><input name="paperTitle" type="text"/></td>
+				</tr>
+				<tr>
+					<td align="right">Paper Abstract : </td>
+					<td><textarea width="450" name="paperAbstract"></textarea></td>
+				</tr>
+				<tr>
+					<td align="right">Paper File (.pdf) </td>
+					<td>
+						<input type="text" name="paperPath"/>
+						<input type="button" value="Browse"/>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">Keywords (min. 3, comma serparated):  </td>
+					<td><textarea name="paperKeys"></textarea></td>
+				</tr>
+				<tr>
+					<td align="right">Subject:  </td>
+					<td>
+						<select>
+							<option>Math</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input align="middle" type="submit" value="Submit"/>
+					</td>
+				</tr>
+			</table>
+		</form>
+		
+		<div id="footer">
+			<ul>
+				<li class="title">Quick links</li>
+				<li><a href="#">Ut enim ad minim</a></li>
+				<li><a href="#">Ut enim ad minim</a></li>
+				<li><a href="#">Ut enim ad minim</a></li>
+			</ul>
+		</div>
+	</div>	
+</body>
+</html>

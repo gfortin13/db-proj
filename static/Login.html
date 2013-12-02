@@ -13,34 +13,40 @@
 	<div id="header">
 		<div class="wrap">
 			<h1 id="logo"><a href="#">CONFSYS</a></h1>
+		
 			<ul id="menu">
 				<li><a href="#">Home</a></li>
-				<li><a class="current" href="#">Change Event</a></li>
+				<li><a href="#">Change Event</a></li>
+				<li><a class="current" href="#">Login</a></li>
 				<li class="last"><a href="#">Settings</a></li>
 			</ul>
 		</div>
 	</div>
 	<div class="wrap">	
 		<center>
-			<form  method="get" id="search">
-			 	<input name="searchQuery" type="text" size="65" value="Search..."  />
+			<form  method="get">
+				<table>
+					<th></th>
+					<th></th>
+					<tr>
+						<td align="right">Username/Email : </td>
+						<td><input name="email" type="text" width="65" value="Email"  /></td>
+					</tr>
+					<tr>
+						<td align="right">Password : </td>
+						<td><input name="password" type="password" width="65" /></td>
+					</tr>
+					<tr >
+						<td align="right" colspan="2">
+							<input type="button" value="Cancel" width="25" name="cancelLoginButton"/>
+							<input type="submit" value="Login" width="25" name="loginButton"/>
+						</td>
+					</tr>
+				</table>
 			</form>
 		</center>
-		<table class="flat-table flat-table-1">
-			<thead>
-				<th width="500">Conference Name</th>
-				<th>Type</th>
-			</thead>
-			<tbody>
-				<tr>
-					<td>John</td>
-					<td>Smith</td>
-				</tr>
-				<tr>
-					<td>John</td>
-					<td>Smith</td>
-				</tr>
-			</tbody>
+		<table >
+			
 		</table>
 	
 		<div id="footer">

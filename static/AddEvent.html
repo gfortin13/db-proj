@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="author" content="Solucija (www.solucija.com)" />
+	<link rel="stylesheet" href="css/main.css" type="text/css" />
+	<link rel="stylesheet" href="css/tables.css" type="text/css" />
+	<title>CONFSYS</title>
+
+	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<div id="header">
+		<div class="wrap">
+			<h1 id="logo"><a href="#">CONFSYS</a></h1>
+		
+			<ul id="menu">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Change Event</a></li>
+				<li><a class="current" href="#">Login</a></li>
+				<li class="last"><a href="#">Settings</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="wrap">	
+		<h2>Add New Event</h2>
+		<form method="get">
+			<table>
+				<th></th>
+				<th width="450"></th>
+								<tr>
+					<td align="right">Event Title : </td>
+					<td><input name="conferenceName" type="text" width="90" /></td>
+				</tr>
+				<tr>
+					<td align="right">Event Description : </td>
+					<td>
+						<textarea width="400" name="conferenceDescription"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">Subject Hierarchy Class : </td>
+					<td><select name"subjectHierarchy">
+							<option>ACM</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">Start Date : </td>
+					<td><input name="conferenceStartDate" value="YYYY-MM-DD" type="text" width="90" /></td>
+				</tr>
+				<tr>
+					<td align="right">End Date : </td>
+					<td><input name="conferenceEndDate" value="YYYY-MM-DD" type="text" width="90" /></td>
+				</tr>
+				<tr>
+					<td align="right">Submission Start Date : </td>
+					<td><input name="submissionStartDate" value="YYYY-MM-DD" type="text" width="90" /></td>
+				</tr>
+				<tr>
+					<td align="right">Submission End Date : </td>
+					<td><input name="submissionEndDate" value="YYYY-MM-DD" type="text" width="90" /></td>
+				</tr>
+				<tr>
+					<td align="right">Review Start Date : </td>
+					<td><input name="reviewStartDate" value="YYYY-MM-DD" type="text" width="90" /></td>
+				</tr>
+				<tr>
+					<td align="right">Review End Date : </td>
+					<td><input name="reviewEndDate" value="YYYY-MM-DD" type="text" width="90" /></td>
+				</tr>
+				<tr>
+					<td align="right">Decision Date : </td>
+					<td><input name="decisionDate" value="YYYY-MM-DD" type="text" width="90" /></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="middle">
+						<input type="button" value="Cancel" name="cancelConferenceButton"/>
+						<input type="submit" value="Add New Event" name="addNewEventButton"/>
+					</td>
+				</tr>
+				
+			</table>
+		</form>
+		<div id="footer">
+			<ul>
+				<li class="title">Quick links</li>
+				<li><a href="#">Ut enim ad minim</a></li>
+				<li><a href="#">Ut enim ad minim</a></li>
+				<li><a href="#">Ut enim ad minim</a></li>
+			</ul>
+			
+		</div>
+	</div>	
+</body>
+</html>

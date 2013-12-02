@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="author" content="Solucija (www.solucija.com)" />
+	<link rel="stylesheet" href="css/main.css" type="text/css" />
+	<link rel="stylesheet" href="css/tables.css" type="text/css" />
+	<title>CONFSYS</title>
+
+	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<div id="header">
+		<div class="wrap">
+			<h1 id="logo"><a href="#">CONFSYS</a></h1>
+		
+			<ul id="menu">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Change Event</a></li>
+				<li><a class="current" href="#">Login</a></li>
+				<li class="last"><a href="#">Settings</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="wrap">
+		<h2>Review Paper</h2>
+		<p/>
+		<h3>Paper Information</h3>
+			<table>
+				<th></th>
+				<th width="450"></th>
+				<tr>
+					<td align="right">Paper Title : </td>
+					<td id="eventNameLabel"></td>
+				</tr>
+				<tr>
+					<td align="right">Paper Abstract : </td>
+					<td id="paperAbstract">
+					</td>
+				</tr>
+				<tr>
+					<td align="right">Paper Subjects </td>
+					<td id="paperSubjects"></td>
+				</tr>
+				<tr>
+					<td align="right">Versions:  </td>
+					<td id="paperVersion"></td>
+				</tr>
+			</table>
+		<p/>
+		<h3>My Review Result</h3>
+		<form method="get">
+			<table>
+				<th></th>
+				<th></th>
+				<tr>
+					<td align="right">Paper Score : </td>
+					<td><input name="paperScore" type="text" width="90" /></td>
+				</tr>
+				<tr>
+					<td align="right">My Confidence Description : </td>
+					<td>
+						<select name"confidenceLevel">
+							<option id="1">1</option>
+							<option id="2">2</option>
+							<option id="3">3</option>
+							<option id="4">4</option>
+							<option id="5">5</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">Originality : </td>
+					<td><select name"originalityScore">
+							<option>Poor</option>
+							<option>Neutral</option>
+							<option>Normal</option>
+							<option>High</option>
+							<option>Extreme</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">Strong Point : </td>
+					<td><input name="paperStrongPoint" type="text" width="90" /></td>
+				</tr>
+				<tr>
+					<td align="right">Other Comments </td>
+					<td><textarea name="paperOtherComments"/></textarea>
+				</tr>
+				
+			</table>
+			<h2>Paper Comments</h2>
+
+			<p/><h3>My Comments to Authors (Shown to author)</h3>
+			<p/><textarea name="commentToAuthor"></textarea>
+			<p/><h3>My Comments to General Chair (Shown only to General Chair)</h3>
+			<p/><textarea name="commentToChair"></textarea>
+			<p/><input type="submit" value="Submit" name="addNewEventButton"/>
+		</form>
+		<div id="footer">
+			<ul>
+				<li class="title">Quick links</li>
+				<li><a href="#">Ut enim ad minim</a></li>
+				<li><a href="#">Ut enim ad minim</a></li>
+				<li><a href="#">Ut enim ad minim</a></li>
+			</ul>
+			
+		</div>
+	</div>	
+</body>
+</html>
