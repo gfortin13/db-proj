@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Article_submition extends CI_Controller
+class Article_submission extends CI_Controller
 {
 	public function __construct()
 	{
