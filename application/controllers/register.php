@@ -52,7 +52,7 @@ class Register extends CI_Controller {
 			print_r($data['user']);
 			echo "</pre>";
 			die;*/
-			$data['title'] = 'Registe Complete';
+			$data['title'] = 'Register Complete';
 			$data['page_title'] = 'Register Complete';
 			
 			$data['user']['password'] = $this->_generateRandomString(8);
