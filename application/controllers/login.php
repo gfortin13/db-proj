@@ -66,6 +66,10 @@ class Login extends CI_Controller {
 	
 	public function valid_credentials($password){
 		$data['credential'] = $this->input->post();
+		/*echo "<pre>";
+		print_r($data['credential']);
+		echo "</pre>";
+		die;*/
 		$this->user = $this->data_model->getUserWithCredentials($data['credential']);
 		
 		if($this->user){
