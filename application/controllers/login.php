@@ -63,7 +63,7 @@ class Login extends CI_Controller {
 			die;
 		}
 	}
-
+	
 	public function valid_credentials($password){
 		$data['credential'] = $this->input->post();
 		$this->user = $this->data_model->getUserWithCredentials($data['credential']);
