@@ -21,4 +21,10 @@ class Readonly_model extends CI_Model {
 		
 		return $query->result_array();
 	}
+
+	public function getAllSubjects(){
+		$query = $this->db2->query('SELECT * FROM sh');
+		
+		return $query->result_array();
+	}
 }

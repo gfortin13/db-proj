@@ -75,4 +75,12 @@ class Data_model extends CI_Model {
 
 		$this->db1->query($sql);
 	}
+
+	public function createConference($conference){
+		$sql = "INSERT INTO Conference (title, description, start_date, end_date, shid) 
+			VALUES ('" . $conference['name'] . "', '" . $conference['description'] . "', '" . $conference['start_date'] . "', '" . 
+			$conference['end_date'] . "', '" . $conference['hierarchy'] . ")";
+
+		$this->db1->query($sql);
+	}
 }

@@ -18,6 +18,8 @@ class Conference_creation extends CI_Controller {
 			$data['title'] = 'Conference Creation';
 			$data['page_title'] = 'Add new conference';
 
+			$data['hierarchy'] = $this->readonly_model->getAllSubjects();
+
 			$this->form_validation->set_rules('name', 'Conference Name', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('description', 'Conference Description', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('hierarchy', 'Hierarchy', 'trim|xss_clean');
