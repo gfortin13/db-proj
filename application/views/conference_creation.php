@@ -4,7 +4,7 @@
         <?php echo validation_errors(); ?>
 	</div>
 
-	<?php echo form_open('event_creation') ?>
+	<?php echo form_open('conference_creation') ?>
         <p>
             <label for="name">Conference Name: </label> 
             <input type="input" size="30" name="name" value="<?php echo set_value('name'); ?>" />
@@ -25,11 +25,11 @@
         </p>
         <p>
             <label for="start_date">Start Date: </label> 
-            <input type="input" size="30" name="start_date" value="<?php echo set_value('start_date'); ?>"/>
+            <input type="input" size="30" name="start_date" value="<?php echo set_value('start_date'); ?>"/> (yyyy-mm-dd, eg: 2013-11-23)
         </p>
         <p>
             <label for="end_date">End Date: </label> 
-            <input type="input" size="30" name="end_date" value="<?php echo set_value('end_date'); ?>"/>
+            <input type="input" size="30" name="end_date" value="<?php echo set_value('end_date'); ?>"/> (yyyy-mm-dd, eg: 2013-11-23)
         </p>
         <br>
         <p class="center">
