@@ -31,7 +31,8 @@ class Data_model extends CI_Model {
 
 		return $query->row_array();
 	}
-	public fuction getAdminWithCredentials($credentials){
+
+	public function getAdminWithCredentials($credentials){
 		$adminIf = $credentials['admin_id'];
 		$password = $credentials['password'];
 		$sql = "SELECT * FROM Admin WHERE admin_id = $admin_id AND password = '$password' LIMIT 1";
