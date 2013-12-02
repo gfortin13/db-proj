@@ -32,7 +32,9 @@ class Conference_creation extends CI_Controller {
 			}
 			else
 			{
+				$data['conference'] = $this->input->post();
 
+				$this->data_model->createConference($data['conference']);
 			}
 		}
 		else{
