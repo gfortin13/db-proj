@@ -20,7 +20,7 @@ class Login extends CI_Controller {
 		print_r($data['countries']);
 		echo "</pre>";
 		die;*/
-		$this->form_validation->set_rules('user_id', 'User ID', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|callback_valid_credentials');
 
 		
@@ -47,23 +47,23 @@ class Login extends CI_Controller {
 			}
 			else{
 				if($this->_less_than24H($data['user'])){
-					$this->data_model->validateUser($data['user']['userID']);
+					$this->data_model->validateUser($data['user']['email']);
 					// login session
 					$sess_array['user'] = $data['user'];
 					$this->session->set_userdata('logged_in', $sess_array);
 					redirect('profile', 'refresh');
 				}
 				else{
-					$this->data_model->deleteUser($data['user']['userID']);
+					$this->data_model->deleteUser($data['user']['email']);
 
 					redirect('register', 'refresh');
 				}
 			}
-			echo "logging in..";
+			echo "logging in.."; 
 			die;
 		}
 	}
-
+	
 	public function valid_credentials($password){
 		$data['credential'] = $this->input->post();
 		$this->user = $this->data_model->getUserWithCredentials($data['credential']);
@@ -72,7 +72,7 @@ class Login extends CI_Controller {
 			return TRUE;
 		}
 		else{
-			$this->form_validation->set_message('valid_credentials', 'User ID or password do not match.');
+			$this->form_validation->set_message('valid_credentials', 'Email or password do not match.');
 		 	
 			return FALSE;
 		}
