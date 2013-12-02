@@ -33,7 +33,7 @@ class AdminLogin extends CI_Controller {
 		}
 		else
 		{
-
+			$data['admin'] = $this->admin;
 			$sess_array['admin'] = $data['admin'];
 			$this->session->set_userdata('adminlogged', $sess_array);
 			redirect('adminProfile', 'refresh');
