@@ -16,10 +16,21 @@
             </textarea>
         </p>
         <p>
-            <label for="password">Password: </label> 
-            <input type="input" size="30" name="password" value="<?php echo set_value('password'); ?>"/>
+            <label for="hierarchy" >Subject Hierarchy Class: </label> 
+            <select name="hierarchy">
+                <?php foreach ($organizations as $key => $organization) { ?>
+                    <option value="<?php echo $hierarchy['shid']; ?>" <?php echo set_select('hierarchy', $organization['shid']); ?>><?php echo $hierarchy['cname']; ?></option>
+                <?php } ?>
+            </select> <span class="red">*</span>
         </p>
-
+        <p>
+            <label for="start_date">Start Date: </label> 
+            <input type="input" size="30" name="start_date" value="<?php echo set_value('start_date'); ?>"/>
+        </p>
+        <p>
+            <label for="end_date">End Date: </label> 
+            <input type="input" size="30" name="end_date" value="<?php echo set_value('end_date'); ?>"/>
+        </p>
         <br>
         <p class="center">
             <input type="submit" name="submit" value="Create" /> 
