@@ -31,6 +31,22 @@ class Data_model extends CI_Model {
 
 		return $query->row_array();
 	}
+	public fuction getAdminWithCredentials($credentials){
+		$adminIf = $credentials['admin_id'];
+		$password = $credentials['password'];
+		$sql = "SELECT * FROM Admin WHERE admin_id = $admin_id AND password = '$password' LIMIT 1";
+		$query = $this->db1->query($sql);
+
+		if($query -> num_rows() == 1)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return false;
+		}
+
+	}
 	
 	public function getUserWithCredentials($credentials){
 		$userId = $credentials['user_id'];
@@ -47,7 +63,6 @@ class Data_model extends CI_Model {
 			return false;
 		}
 	}
-
 	public function validateUser($userID){
 		$sql ="UPDATE User SET validated = 1 WHERE userID = $userID";
 

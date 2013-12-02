@@ -4,10 +4,10 @@
         <?php echo validation_errors(); ?>
 	</div>
 
-	<?php echo form_open('login') ?>
+	<?php echo form_open('adminlogin') ?>
         <p>
-            <label for="email">Email: </label> 
-            <input type="input" size="30" name="email" value="<?php echo set_value('email'); ?>" />
+            <label for="admin_id">Admin Login: </label> 
+            <input type="input" size="30" name="admin_id" value="<?php echo set_value('admin_id'); ?>" />
         </p>
         <p>
             <label for="password">Password: </label> 

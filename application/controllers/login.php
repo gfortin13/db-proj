@@ -20,7 +20,7 @@ class Login extends CI_Controller {
 		print_r($data['countries']);
 		echo "</pre>";
 		die;*/
-		$this->form_validation->set_rules('user_id', 'User ID', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|callback_valid_credentials');
 
 		
@@ -59,7 +59,7 @@ class Login extends CI_Controller {
 					redirect('register', 'refresh');
 				}
 			}
-			echo "logging in..";
+			echo "logging in.."; 
 			die;
 		}
 	}
