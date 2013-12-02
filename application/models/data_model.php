@@ -49,9 +49,9 @@ class Data_model extends CI_Model {
 	}
 	
 	public function getUserWithCredentials($credentials){
-		$userId = $credentials['user_id'];
+		$userId = $credentials['email'];
 		$password = $credentials['password'];
-		$sql = "SELECT * FROM User WHERE userID = $userId AND password = '$password' LIMIT 1";
+		$sql = "SELECT * FROM User WHERE email = $email AND password = '$password' LIMIT 1";
 	
 		$query = $this->db1->query($sql);
 		if($query -> num_rows() == 1)
@@ -63,14 +63,14 @@ class Data_model extends CI_Model {
 			return false;
 		}
 	}
-	public function validateUser($userID){
-		$sql ="UPDATE User SET validated = 1 WHERE userID = $userID";
+	public function validateUser($email){
+		$sql ="UPDATE User SET validated = 1 WHERE email = $email";
 
 		$this->db1->query($sql);
 	}
 
-	public function deleteUser($userID){
-		$sql ="DELETE FROM User WHERE userID = $userID";
+	public function deleteUser($email){
+		$sql ="DELETE FROM User WHERE email = $email";
 
 		$this->db1->query($sql);
 	}
