@@ -22,7 +22,7 @@ class Article_submition extends CI_Controller
 		echo "</pre>";
 
 		$this->load->view('header', $data);
-		$this->load->view('article_submition');
+		$this->load->view('article_submission');
 		$this->load->view('footer');
 	}
 }
