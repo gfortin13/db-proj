@@ -38,6 +38,8 @@ class Conference_creation extends CI_Controller {
 				$data['conference'] = $this->input->post();
 
 				$this->data_model->createConference($data['conference']);
+
+				redirect('event_creation/create/'.$confId)
 			}
 		}
 		else{
