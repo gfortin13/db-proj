@@ -1,7 +1,25 @@
 <div id="news">
-	<?php foreach ($globalNews as $key => $news) { ?>
-	  <br/>Title : <?php echo $news['title'] ?>
-	  <br/>Description : <?php echo $news['content'] ?>
-	  <br/>Post Date : <?php echo $news['postDate'] ?>
-    <?php } ?>
+	<center>
+		<table>
+			<th align="left">Title</th>
+			<th align="left">News</th>
+			<th align="left">Date Posted</th>
+			<th></th>
+		
+		<?php foreach ($globalNews as $key => $news) { ?>
+		    <tr>
+		    	<form>
+
+					<td  width="200"><a href="#"><?php echo $news['title'] ?></a></td>
+					<td width="400"><?php echo $news['content'] ?></td>
+					<td><?php echo $news['postDate'] ?></td>
+					<td padding="10">
+						<input type="button" name="deleteGlobaleNewsButton" value="Delete"/>
+						<!--<input type="hidden" name="newsID" value="<?php echo $news['newsID']?>"/>-->
+					</td>
+				</form>
+		    </tr>
+	    <?php } ?>
+		</table>
+	</center>
 </div>
