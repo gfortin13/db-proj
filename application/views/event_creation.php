@@ -52,6 +52,11 @@
             <label for="start_date">Decision Date: </label> 
             <input type="input" size="30" name="decision_date" value="<?php echo set_value('decision_date'); ?>"/> (yyyy-mm-dd, eg: 2013-11-23)
         </p>
+        </p>
+                <p>
+            <label for="chair_email">Program Chair Email: </label> 
+            <input type="input" size="30" name="chair_email" value="<?php echo set_value('chair_date'); ?>"/> (test@example.com; User must be registered in the system with this e-mail)
+        </p>
         <br>
         <p class="center">
             <input type="submit" name="submit" value="Create" /> 

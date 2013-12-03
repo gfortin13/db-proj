@@ -115,6 +115,11 @@ class Data_model extends CI_Model {
 				$event['decision_date'] . "')";
 		
 		$this->db1->query($sql);
+
+		$sql2 = "SELECT MAX(eventID) as eventID from Events";
+		$query = $this->db1->query($sql2);
+
+		return $query->row()->eventID;
 	}
 
 	public function getGlobalNews(){
@@ -129,5 +134,35 @@ class Data_model extends CI_Model {
 		$sql = "SELECT n.title AS title, n.content AS content, n.postDate as postDate FROM News n, ConfNews c WHERE n.newsID = c.newsID AND c.confID = '$confID'";
 		$query = $this->db1->query($sql);
 		return $query->row_array();
+	}
+
+	public function emailExists($email)
+	{
+		$sql = "SELECT * from User WHERE email = '$email'";
+		$query = $this->db1->query($sql);
+		if ($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public function getRoleID($rolename)
+	{
+		$sql = "SELECT roleID from Role where name='$rolename'";
+		$query = $this->db1->query($sql);
+
+		return $query->row()->name;
+	}
+
+	public function registerToEvent($event, $program_chair){
+		$sql = "INSERT into EventRoles (userID, roleID, eventID) 
+			VALUES (" . $program_chair['userID'] . ", '" . $program_chair['roleID'] . "', '" . $event['eventID'] . "')";
+
+		$this->db1->query($sql);
+
 	}
 }

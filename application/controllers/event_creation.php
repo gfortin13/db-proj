@@ -41,6 +41,7 @@ class Event_creation extends CI_Controller {
 			$this->form_validation->set_rules('review_start_date', 'Review Start Date', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('review_end_date', 'Review End Date', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('decision_date', 'Decision Date', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('chair_email', 'Program Chair E-mail', 'trim|required|valid_email|xss_clean|callback_user_exists');
 
 			if ($this->form_validation->run() === FALSE)
 			{
@@ -53,11 +54,33 @@ class Event_creation extends CI_Controller {
 				$data['event'] = $this->input->post();
 				$data['event']['confID'] = $data['confID'];
 
-				$this->data_model->createEvent($data['event']);
+				$data['eventID'] = $this->data_model->createEvent($data['event']);
+				$data['event']['eventID'] = $data['eventID'];
+
+
+				$data['roleID'] = $this->data_model->getRoleID("program chair");
+				$data['program_chair']['roleID'] = $data['roleID'];	
+
+				$this->data_model->registerToEvent($data['event'], $data['program_chair']);
+				
 			}
 		}
 		else{
 			redirect('adminlogin', 'refresh');
+		}
+
+		public function user_exists($chair_email){
+			$data['program_chair'] = $this->data_model->getUserByEmail($chair_email);
+			if ($data['program_chair'] == false)
+			{
+				$this->form_validation->set_message('chair_email', 'Email does not belong to any user in the system');
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+
 		}
 	}
 
