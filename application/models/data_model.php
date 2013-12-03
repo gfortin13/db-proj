@@ -84,4 +84,20 @@ class Data_model extends CI_Model {
 
 		$this->db1->query($sql);
 	}
+
+	public function getConferenceName($id){
+		$sql = "SELECT title from Conference WHERE id=$id";
+
+		$query = $this->db1->query($sql);
+		if($query -> num_rows() == 1)
+		{
+			$row = $query->row();
+			return $row->title;
+		}
+		else
+		{
+			return false;
+		}
+
+	}
 }
