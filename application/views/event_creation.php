@@ -5,7 +5,7 @@
 	</div>
 
     <p>Create Event for Conference: <?php echo $confName; ?></p>
-	<?php echo form_open('event_creation') ?>
+	<?php echo form_open('event_creation/create/'.$confID) ?>
         <p>
             <label for="name">Event Name: </label> 
             <input type="input" size="30" name="name" value="<?php echo set_value('name'); ?>" />
