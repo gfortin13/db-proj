@@ -51,7 +51,7 @@ class Event_creation extends CI_Controller {
 			else
 			{
 				$data['event'] = $this->input->post();
-				$data['event']['confID'] =  $data['confID']
+				$data['event']['confID'] = $data['confID'];
 
 				$this->data_model->createEvent($data['event']);
 			}
