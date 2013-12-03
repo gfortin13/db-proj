@@ -18,6 +18,8 @@
         <p> <?php echo $subject ?> </p>
     </p>
 
+    <a href="<?php echo "index.php?/filedownload/file/" . $fileID ?>" target="_blank">Click this shit</a>
+
     <?php echo form_open('review_article/update/'.$articleID) ?>
         <h3>My Review</h3>
          

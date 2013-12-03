@@ -27,6 +27,9 @@ class Review_article extends CI_Controller {
 		$data['abstract'] = $articleInfo['abstract'];
 		$data['subject'] = $this->readonly_model->getSubjectCnameById($articleInfo['shid']);
 
+		$data['fileID'] = $articleInfo['fileID'];
+
+
 		$this->form_validation->set_rules('chair_comments', 'Comments to Program Chair', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('public_comments', 'Comments to Author', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('score', 'Article Score', 'trim|required|xss_clean');
@@ -67,6 +70,8 @@ class Review_article extends CI_Controller {
 		$data['title'] = $articleInfo['title'];
 		$data['abstract'] = $articleInfo['abstract'];
 		$data['subject'] = $this->readonly_model->getSubjectCnameById($articleInfo['shid']);
+
+		$data['fileID'] = $articleInfo['fileID'];
 
 		$reviewInfo = $this->steve_model->getReviewById($data['reviewerID'], $data['articleID']);
 		$data['public_comments'] = $reviewInfo['public_comments'];

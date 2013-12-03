@@ -43,4 +43,12 @@ class Steve_model extends CI_Model {
 
 		$this->db1->query($sql);
 	}
+
+	public function getFileLocation($fileID){
+		$sql = "SELECT location FROM Files WHERE fileID = $fileID";
+
+		$query = $this->db1->query($sql);
+		$row = $query->row();
+		return $row->location;
+	}
 }

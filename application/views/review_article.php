@@ -7,16 +7,18 @@
     <h3>Paper Information</h3>
     <p>
         <label for="title">Tile: </label> 
-        <p> <?php echo $title ?> </p>
+        <p> <?php echo $title; ?> </p>
     </p>
     <p>
         <label for="abstract">Abstract: </label> 
-        <p> <?php echo $abstract ?> </p>
+        <p> <?php echo $abstract; ?> </p>
     </p>
     <p>
         <label for="subject">Subject: </label> 
-        <p> <?php echo $subject ?> </p>
+        <p> <?php echo $subject; ?> </p>
     </p>
+
+    <a href="<?php echo "index.php?/filedownload/file/" . $fileID ?>" target="_blank">Click this shit</a>
 
     <?php echo form_open('review_article/review/'.$articleID) ?>
         <h3>My Review</h3>
