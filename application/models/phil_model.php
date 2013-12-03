@@ -34,4 +34,13 @@ class Phil_model extends CI_Model {
 
 		$this->db1->query($sql);
 	}
+
+	public function getNewsById($newsID)
+	{
+		$sql = "SELECT newsID, title, content, postDate FROM News WHERE newsID = '$newsID'";
+	
+		$query = $this->db1->query($sql);
+
+		return $query->row_array();
+	}
 }

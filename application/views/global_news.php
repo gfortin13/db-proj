@@ -8,7 +8,7 @@
 		
 		<?php foreach ($globalNews as $key => $news) { ?>
 		    <tr>
-		    	<form>
+		    	<?php echo form_open('manage_news/deleteNews'.$news['newsID']) ?>
 
 					<td  width="200"><a href="#"><?php echo $news['title'] ?></a></td>
 					<td width="400"><?php echo $news['content'] ?></td>
