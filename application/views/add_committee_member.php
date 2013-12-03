@@ -7,10 +7,10 @@
 
 	<?php echo form_open('add_committee_member/add/'.$eventID) ?>
         <p>
-            <label for="user" >User: </label> 
-            <select name="user">
+            <label for="userID" >User: </label> 
+            <select name="userID">
                 <?php foreach ($users as $user) { ?>
-                    <option value="<?php echo $user['userID']; ?>" <?php echo set_select('users', $user['userID']); ?>><?php echo $user['email'] ?></option>
+                    <option value="<?php echo $user['userID']; ?>" <?php echo set_select('userID', $user['userID']); ?>><?php echo $user['email'] ?></option>
                 <?php } ?>
             </select> <span class="red">*</span>
         </p>
