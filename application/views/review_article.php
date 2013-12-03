@@ -3,23 +3,22 @@
 	<div class="error">
         <?php echo validation_errors(); ?>
 	</div>
+    
+    <h3>Paper Information</h3>
+    <p>
+        <label for="title">Tile: </label> 
+        <p> <?php echo $title ?> </p>
+    </p>
+    <p>
+        <label for="abstract">Abstract: </label> 
+        <p> <?php echo $abstract ?> </p>
+    </p>
+    <p>
+        <label for="subject">Subject: </label> 
+        <p> <?php echo $subject ?> </p>
+    </p>
 
-	<?php echo form_open('review_paper/review/'.$articleID) ?>
-        
-        <h3>Paper Information</h3>
-        <p>
-            <label for="title">: </label> 
-            <input type="input" size="30" name="title" value="<?php echo set_value('title'); ?>" />
-        </p>
-        <p>
-            <label for="abstract">: </label> 
-            <input type="input" size="30" name="abstract" value="<?php echo set_value('abstract'); ?>" />
-        </p>
-        <p>
-            <label for="subject">: </label> 
-            <input type="input" size="30" name="subject" value="<?php echo set_value('subject'); ?>" />
-        </p>
-
+    <?php echo form_open('review_article/review/'.$articleID) ?>
         <h3>My Review</h3>
          
         <p>

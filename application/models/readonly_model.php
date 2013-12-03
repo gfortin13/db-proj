@@ -27,4 +27,12 @@ class Readonly_model extends CI_Model {
 		
 		return $query->result_array();
 	}
+
+	public function getSubjectCnameById($shid){
+		$sql = "SELECT cname FROM sh WHERE shid=$shid";
+
+		$query = $this->db2->query($sql);
+		$row = $query->row();
+		return $row->cname;
+	}
 }

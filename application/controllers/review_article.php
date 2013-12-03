@@ -18,12 +18,36 @@ class Review_article extends CI_Controller {
 
 	public function review($articleID)
 	{
-		$data['articleID'] = $articleID;
-		$data['articleInfo'] = $this->steve_model->getArticleById($articleID);
+		$this->load->helper('form');
+		$this->load->library('form_validation');
 
-		$this->load->view('header', $data);
-		$this->load->view('event_creation');
-		$this->load->view('footer');	
+		$data['articleID'] = $articleID;
+		$articleInfo = $this->steve_model->getArticleById($articleID);
+		$data['title'] = $articleInfo['title'];
+		$data['abstract'] = $articleInfo['abstract'];
+		$data['subject'] = $this->readonly_model->getSubjectCnameById($articleInfo['shid']);
+
+		$this->form_validation->set_rules('chair_comments', 'Comments to Program Chair', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('public_comments', 'Comments to Author', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('score', 'Article Score', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('confidence', 'Confidence Level', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('originality', 'Originality', 'trim|required|xss_clean');
+		
+
+		if ($this->form_validation->run() === FALSE)
+		{
+			$this->load->view('header', $data);
+			$this->load->view('review_article');
+			$this->load->view('footer');	
+		}
+		else
+		{
+			$data['review'] = $this->input->post();
+			$userLoggedIn = $this->session->userdata('logged_in');
+			$data['reviewerID'] = $userLoggedIn['user']['userID'];
+			$this->steve_model->submitReview($data['reviewerID'], $data['articleID'], $data['review']);
+			
+		}
 
 
 
