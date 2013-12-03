@@ -116,4 +116,11 @@ class Data_model extends CI_Model {
 		
 		$this->db1->query($sql);
 	}
+
+	public function getGlobalNews(){
+		$sql = "SELECT n.title AS title, n.content AS content, n.postDate as postDate FROM News n, GlobalNews g WHERE n.newsID = g.newsID " ;
+		$query = $this->db1->query($sql);
+		
+		return $query->row_array();
+ 	}
 }
