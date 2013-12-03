@@ -10,17 +10,33 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
+		$this->home();
+	}
+
+	public function home($confID = 0, $eventID = 0){
+
 		$data['title'] = 'ConfSys';
 		$data['page_title'] = 'Home';
 
 		$data['global_news'] = $this->data_model->getGlobalNews();
+		$data['conferences'] = $this->data_model->getConferences();
+
+		echo "<pre>";
+		print_r($data['global_news']);
+		echo "</pre>";
+		die;
+
+		if($confID != 0){
+			$data['conference_news'] = $this->data_model->getConferenceNews($confID);
+		}
 
 		$data['user'] = $this->session->userdata('logged_in');
-		if(isset($data['user'])){
+
+		/*if(isset($data['user'])){
 			$data['conferences'] = $this->data_model->getRegisteredConferences();
 
 			$data['conference_news']
-		}
+		}*/
 		
 
 		$this->load->view('header', $data);

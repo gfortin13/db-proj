@@ -126,14 +126,14 @@ class Data_model extends CI_Model {
 		$sql = "SELECT n.title AS title, n.content AS content, n.postDate as postDate FROM News n, GlobalNews g WHERE n.newsID = g.newsID " ;
 		$query = $this->db1->query($sql);
 
-		return $query->row_array();
+		return $query->result_array();
  	}
 
  	public function getConferenceNews($confID)
 	{
 		$sql = "SELECT n.title AS title, n.content AS content, n.postDate as postDate FROM News n, ConfNews c WHERE n.newsID = c.newsID AND c.confID = '$confID'";
 		$query = $this->db1->query($sql);
-		return $query->row_array();
+		return $query->result_array();
 	}
 
 	public function getUserByEmail($email)
@@ -158,11 +158,26 @@ class Data_model extends CI_Model {
 		return $query->row()->roleID;
 	}
 
-	public function registerToEvent($event, $program_chair){
+	public function registerToEvent($event, $user){
 		$sql = "INSERT into EventRoles (userID, roleID, eventID) 
-			VALUES (" . $program_chair['userID'] . ", '" . $program_chair['roleID'] . "', '" . $event['eventID'] . "')";
+			VALUES (" . $user['userID'] . ", '" . $user['roleID'] . "', '" . $event['eventID'] . "')";
 
 		$this->db1->query($sql);
 
 	}
+
+	public function getConferences(){
+		$sql = "select * from Conference LIMIT 10";
+
+		$query = $this->db1->query($sql);
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 }
