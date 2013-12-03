@@ -26,6 +26,15 @@ class View_articles extends CI_Controller {
 	}
 
 	public function view($articleID){
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+
+		$data['article'] = $this->steve_model->getArticleById($articleID);
+
+
+		$this->load->view('header', $data);
+		$this->load->view('view_article');
+		$this->load->view('footer');
 
 	}
 }
