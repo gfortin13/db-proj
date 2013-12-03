@@ -10,7 +10,7 @@
             <label for="userID" >User: </label> 
             <select name="userID">
                 <?php foreach ($users as $user) { ?>
-                    <option value="<?php echo $user['userID']; ?>" <?php echo set_select('userID', $user['userID']); ?>><?php echo $user['email'] ?></option>
+                    <option value="<?php echo $user['userID']; ?>" <?php echo set_select('userID', $user['userID']); ?>><?php echo $user['last_name'] . ", " . $user['first_name'] . " (" . $user['email'] . ")"; ?></option>
                 <?php } ?>
             </select> <span class="red">*</span>
         </p>
