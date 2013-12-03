@@ -27,4 +27,20 @@ class Steve_model extends CI_Model {
 
 		$this->db1->query($sql);
 	}
+
+	public function getReviewById($reviewerID, $articleID){
+		$sql = "SELECT * from Reviews WHERE userID=$reviewerID AND articleID=$articleID";
+
+		$query = $this->db1->query($sql);
+
+		return $query->row_array();
+	}
+
+	public function updateReview($reviewerID, $articleID, $review){
+		$sql = "UPDATE Reviews SET score = '" . $review['score'] . "', confidence = '" . $review['confidence'] . "', 
+		originality = '" . $review['originality'] . "', public_comments = '" . $review['public_comments'] . "', chair_comments = '" . $review['chair_comments'] . "' 
+		WHERE userID = $reviewerID AND articleID = $articleID";
+
+		$this->db1->query($sql);
+	}
 }
