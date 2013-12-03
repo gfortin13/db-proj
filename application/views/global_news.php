@@ -8,13 +8,13 @@
 		
 		<?php foreach ($globalNews as $key => $news) { ?>
 		    <tr>
-		    	<?php echo form_open('manage_news/deleteNews'.$news['newsID']) ?>
+		    	<?php echo form_open('manage_news/delete_news/'.$news['newsID']) ?>
 
-					<td  width="200"><a href="<?php echo "index.php?/manage_news/displayNewsToUpdate/" . $news['newsID'] ?>"><?php echo $news['title'] ?></a></td>
+					<td  width="200"><a href="<?php echo "index.php?/manage_news/display_news_to_update/" . $news['newsID'] ?>"><?php echo $news['title'] ?></a></td>
 					<td width="400"><?php echo $news['content'] ?></td>
 					<td><?php echo $news['postDate'] ?></td>
-					<td padding="10">
-						<input type="button" name="deleteGlobaleNewsButton" value="Delete"/>
+					<td>
+						<input type="submit" name="deleteGlobaleNewsButton" value="Delete"/>
 						<!--<input type="hidden" name="newsID" value="<?php echo $news['newsID']?>"/>-->
 					</td>
 				</form>

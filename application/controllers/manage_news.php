@@ -14,11 +14,11 @@ class Manage_news extends CI_Controller {
 
 	}
 
-	public function displayNewsToUpdate($newsID)
+	public function display_news_to_update($newsID)
 	{
 		$this->load->helper('form');
 		$this->load->library('form_validation');
-		
+
 		$data['news'] =  $this->phil_model->getNewsById($newsID);
 
 		$this->load->view('header', $data);
@@ -27,22 +27,22 @@ class Manage_news extends CI_Controller {
 
 	}
 
-	public function updateNews()
+	public function update_news()
 	{
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('news_title', 'Title', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('news_content', 'Description', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('news_postDate', 'Date Posted', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('title', 'Title', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('content', 'Description', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('postDate', 'Date Posted', 'trim|required|xss_clean');
 
 		$data['news'] = $this->input->post();
 
 		
 		if ($this->form_validation->run() === FALSE)
 		{
-			$this->load->view('header', $data);
-			$this->load->view('News/update_news');
+			$this->load->view('header');
+			$this->load->view('update_news');
 			$this->load->view('footer');	
 		}
 		else
@@ -52,19 +52,19 @@ class Manage_news extends CI_Controller {
 			$data['title'] = 'Update News Complete';
 			$data['page_title'] = 'Update News Complete';
 
-			$data['news'] =  $this->phil_model->getNewsById($newsID);
+			$data['news'] =  $this->phil_model->getNewsById($data['news']['newsID']);
 
-			$this->load->view('header', $data);
+			$this->load->view('header',$data);
 			$this->load->view('update_news_complete');
 			$this->load->view('footer');
 		}
 	}
-	public function deleteNews($newsID)
+	public function delete_news($newsID)
 	{
 		$this->phil_model->deleteGlobalNews($newsID);
 
 		$this->load->view('header', $data);
-		$this->load->view('News/update_news');
+		$this->load->view('update_news');
 		$this->load->view('footer');
 	}
 
