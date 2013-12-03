@@ -6,13 +6,14 @@ class Article_submission_model extends CI_Model
 		$this->db1 = $this->load->database('main', TRUE);
 	}
 
-	public function submitPaper($fields, $file)
+	public function submitPaper($fields, $file, $user)
 	{
 		$file_id = $this->saveFile($file);
+		$article_id = $this->saveArticle($fields, $file_id);
 
-		// save in article table :)
-		$sql = "INSERT INTO Article (title, abstract, fileID, finalDecision, shID) VALUES ('".$fields['paper_title']."', '".$fields['paper_abstract']."', $file_id, 'processing', 1824)";
-		$this->db1->query($sql);
+		// save in submits table :)
+		$sql = "INSERT INTO Submits (userID, articleID) VALUES ('".$user['userID']."', '".$article_id."')";
+		$this->db1->query($sql);		
 	}
 
 	private function saveFile($file)
@@ -21,6 +22,18 @@ class Article_submission_model extends CI_Model
 		$this->db1->query($sql);
 
 		return $this->getMaxFileID();
+	}
+
+	private function saveArticle($fields, $file_id)
+	{
+		// save in article table :)
+		$sql = "INSERT INTO Article (title, abstract, fileID, finalDecision, shID) VALUES ('".$fields['paper_title']."', '".$fields['paper_abstract']."', $file_id, 'processing', '".$fields['subjects']."')";
+		$this->db1->query($sql);
+
+		$sql = "SELECT articleID FROM Article WHERE fileID = $file_id";
+		$query = $this->db1->query($sql);
+
+		return $query->row()->articleID;
 	}
 
 	public function getMaxFileID()

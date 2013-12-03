@@ -15,10 +15,10 @@ class Article_submission extends CI_Controller
 	public function index()
 	{
 		$this->loadHelperModules();
-		$this->setPageTitles();		
+		$this->setPageTitles();
 
-		//$this->data['user'] = $this->session->userdata('logged_in');
-		$this->data['user']['email'] = "test@test.com";
+		$this->data['user'] = $this->session->userdata('logged_in');
+		$this->data['subjects'] = $this->readonly_model->getAllSubjects();
 
 		if (empty($this->data['user']) || !$this->validateAuthor())
 		{
@@ -32,6 +32,8 @@ class Article_submission extends CI_Controller
 
 	public function submit()
 	{
+		$this->data['user'] = $this->session->userdata('logged_in');
+
 		$this->loadHelperModules();
 		$this->setPageTitles();
 
@@ -51,14 +53,9 @@ class Article_submission extends CI_Controller
 
 		if ($this->form_validation->run() !== FALSE && !empty($this->data['u_file']) && $this->upload->do_upload('paper_file'))
 		{
-			//$this->load->helper('file');
-
 			$this->data['fields'] = $this->input->post();
-			//$content = read_file($this->data['u_file']['tmp_name']);
-			//$content = addslashes($content);
-			//$this->data['u_file']['content'] = $content;
 
-			$this->article_submission_model->submitPaper($this->data['fields'], $this->data['u_file']);
+			$this->article_submission_model->submitPaper($this->data['fields'], $this->data['u_file'], $this->data['user']['user']);
 
 			$this->show('article_submission_complete');
 		}
@@ -84,7 +81,7 @@ class Article_submission extends CI_Controller
 	private function show($page = 'article_submission', $errors = NULL)
 	{
 		$this->load->view('header', $this->data);
-		$this->load->view($page, $errors);
+		$this->load->view($page, $this->data);
 		$this->load->view('footer');
 	}
 

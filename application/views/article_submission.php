@@ -18,9 +18,12 @@
                 <input type="file" id="paper_file" name="paper_file" value="<?php echo set_value('paper_file'); ?>" /> <span class="red">*</span>
             </p>
             <p>
-                <label for="subjects">Paper Subjects: </label> 
-                <input type="button" name="subjects" value="Select Paper Subjects" /> <span class="red">*</span>
-                <label>(click to see list)</label>
+                <label for="subjects" >Subjects: </label> 
+                <select name="subjects">
+                    <?php foreach ($subjects as $key => $subject) { ?>
+                        <option value="<?php echo $subject['shid']; ?>" <?php echo set_select('subject', $subject['shid']); ?>><?php echo $subject['cname']; ?></option>
+                    <?php } ?>
+                </select> <span class="red">*</span>
             </p>
             <p>
                 <input type="submit" name="submit_paper" value="Submit your paper" />
