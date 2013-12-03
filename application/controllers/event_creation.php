@@ -57,11 +57,12 @@ class Event_creation extends CI_Controller {
 				$data['eventID'] = $this->data_model->createEvent($data['event']);
 				$data['event']['eventID'] = $data['eventID'];
 
-
+				$data['program_chair'] = $this->program_chair;
 				$data['roleID'] = $this->data_model->getRoleID("program chair");
 				$data['program_chair']['roleID'] = $data['roleID'];	
 
 				$this->data_model->registerToEvent($data['event'], $data['program_chair']);
+				
 				
 			}
 		}
@@ -69,18 +70,22 @@ class Event_creation extends CI_Controller {
 			redirect('adminlogin', 'refresh');
 		}
 
-		public function user_exists($chair_email){
-			$data['program_chair'] = $this->data_model->getUserByEmail($chair_email);
-			if ($data['program_chair'] == false)
-			{
-				$this->form_validation->set_message('chair_email', 'Email does not belong to any user in the system');
-				return false;
-			}
-			else
-			{
-				return true;
-			}
 
+	}
+	public function user_exists($chair_email){
+		$this->program_chair = $this->data_model->getUserByEmail($chair_email);
+		//echo "<pre>";
+		//print_r($data['program_chair']);
+		//echo "</pre>";
+		//die;
+		if ($this->program_chair == false)
+		{
+			$this->form_validation->set_message('chair_email', 'Email does not belong to any user in the system');
+			return false;
+		}
+		else
+		{
+			return true;
 		}
 	}
 

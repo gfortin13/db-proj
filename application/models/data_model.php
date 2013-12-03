@@ -136,7 +136,7 @@ class Data_model extends CI_Model {
 		return $query->row_array();
 	}
 
-	public function emailExists($email)
+	public function getUserByEmail($email)
 	{
 		$sql = "SELECT * from User WHERE email = '$email'";
 		$query = $this->db1->query($sql);
@@ -155,7 +155,7 @@ class Data_model extends CI_Model {
 		$sql = "SELECT roleID from Role where name='$rolename'";
 		$query = $this->db1->query($sql);
 
-		return $query->row()->name;
+		return $query->row()->roleID;
 	}
 
 	public function registerToEvent($event, $program_chair){
