@@ -72,7 +72,7 @@ class Data_model extends CI_Model {
 	}
 
 	public function deleteUser($email){
-		$sql ="DELETE FROM User WHERE email = $email";
+		$sql ="DELETE FROM User WHERE email = '$email'";
 
 		$this->db1->query($sql);
 	}
@@ -85,19 +85,10 @@ class Data_model extends CI_Model {
 		$this->db1->query($sql);
 	}
 
-	public function getConferenceName($id){
-		$sql = "SELECT title from Conference WHERE id=$id";
+	public function validateAuthor($u_id)
+	{
+		$sql = "SELECT * FROM EventRoles WHERE userID = $u_id AND roleID = 1";
 
-		$query = $this->db1->query($sql);
-		if($query -> num_rows() == 1)
-		{
-			$row = $query->row();
-			return $row->title;
-		}
-		else
-		{
-			return false;
-		}
-
+		$this->db1->query($sql);
 	}
 }
