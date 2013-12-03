@@ -59,6 +59,24 @@ class Manage_news extends CI_Controller {
 			$this->load->view('footer');
 		}
 	}
+	public function add_global_news()
+	{
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('title', 'Title', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('content', 'Description', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('postDate', 'Date Posted', 'trim|required|xss_clean');
+
+		$data['news'] = $this->input->post();
+
+		
+
+		$this->load->view('header', $data);
+		$this->load->view('add_global_news_complete');
+		$this->load->view('footer');
+	}
+
 	public function delete_news($newsID)
 	{
 		$this->phil_model->deleteGlobalNews($newsID);

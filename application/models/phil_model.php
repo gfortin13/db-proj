@@ -22,12 +22,12 @@ class Phil_model extends CI_Model {
 	public function deleteGlobalNews($news)
 	{
 		$newsID = $news['newsID'];
-		$sql = "DELETE FROM GlobalNews
+		$sql = "DELETE FROM News
 				WHERE newsID='$newsID'";
 
 		$this->db1->query($sql);
 	}
-	public function createNews($news)
+	public function createGlobalNews($news)
 	{
 		$sql = "INSERT INTO News (title, content, postDate) 
 				VALUES ('" . $news['title'] . "', '" . $news['content'] . "', '" . $news['postDate'] . "')";

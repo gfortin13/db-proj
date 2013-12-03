@@ -21,5 +21,6 @@
 		    </tr>
 	    <?php } ?>
 		</table>
+		<a href="<?php echo "index.php?/manage_news/add_global_news/"?>">Add News</a>
 	</center>
 </div>
