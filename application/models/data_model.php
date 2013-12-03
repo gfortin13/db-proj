@@ -110,9 +110,9 @@ class Data_model extends CI_Model {
 
 	public function createEvent($event){
 		$sql = "INSERT INTO Events (confID, title, description, start_date, end_date, submission_start, submission_end, review_start, review_end, decision_date)
-			VALUES ('" . $event['confID'] . "', '" . $event['description'] . "', '" . $event['start_date'] . "', '" . $event['end_date'] . "', '" . 
+			VALUES (" . $event['confID'] . ", '" . $event['description'] . "', '" . $event['start_date'] . "', '" . $event['end_date'] . "', '" . 
 				$event['submission_start_date'] . "', '" . $event['submission_end_date'] . "', '" . $event['review_start_date'] . "', '" . $event['review_end_date'] . "', '" . 
-				$event['decision_date'] . ")";
+				$event['decision_date'] . "')";
 		
 		$this->db1->query($sql);
 	}
@@ -120,7 +120,14 @@ class Data_model extends CI_Model {
 	public function getGlobalNews(){
 		$sql = "SELECT n.title AS title, n.content AS content, n.postDate as postDate FROM News n, GlobalNews g WHERE n.newsID = g.newsID " ;
 		$query = $this->db1->query($sql);
-		
+
 		return $query->row_array();
  	}
+
+ 	public function getConferenceNews($confID)
+	{
+		$sql = "SELECT n.title AS title, n.content AS content, n.postDate as postDate FROM News n, ConfNews c WHERE n.newsID = c.newsID AND c.confID = '$confID'";
+		$query = $this=>db1->query($sql);
+		return $query->row_array();
+	}
 }
