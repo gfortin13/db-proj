@@ -34,23 +34,23 @@
         </p>
                 <p>
             <label for="start_date">Submission Start Date: </label> 
-            <input type="input" size="30" name="start_date" value="<?php echo set_value('submission_start_date'); ?>"/> (yyyy-mm-dd, eg: 2013-11-23)
+            <input type="input" size="30" name="submission_start_date" value="<?php echo set_value('submission_start_date'); ?>"/> (yyyy-mm-dd, eg: 2013-11-23)
         </p>
         <p>
             <label for="end_date">Submission End Date: </label> 
-            <input type="input" size="30" name="end_date" value="<?php echo set_value('submission_end_date'); ?>"/> (yyyy-mm-dd, eg: 2013-11-23)
+            <input type="input" size="30" name="submission_end_date" value="<?php echo set_value('submission_end_date'); ?>"/> (yyyy-mm-dd, eg: 2013-11-23)
         </p>
                 <p>
             <label for="start_date">Review Start Date: </label> 
-            <input type="input" size="30" name="start_date" value="<?php echo set_value('review_start_date'); ?>"/> (yyyy-mm-dd, eg: 2013-11-23)
+            <input type="input" size="30" name="review_start_date" value="<?php echo set_value('review_start_date'); ?>"/> (yyyy-mm-dd, eg: 2013-11-23)
         </p>
         <p>
             <label for="end_date">Review End Date: </label> 
-            <input type="input" size="30" name="end_date" value="<?php echo set_value('review_end_date'); ?>"/> (yyyy-mm-dd, eg: 2013-11-23)
+            <input type="input" size="30" name="review_end_date" value="<?php echo set_value('review_end_date'); ?>"/> (yyyy-mm-dd, eg: 2013-11-23)
         </p>
                 <p>
             <label for="start_date">Decision Date: </label> 
-            <input type="input" size="30" name="start_date" value="<?php echo set_value('decision_date'); ?>"/> (yyyy-mm-dd, eg: 2013-11-23)
+            <input type="input" size="30" name="decision_date" value="<?php echo set_value('decision_date'); ?>"/> (yyyy-mm-dd, eg: 2013-11-23)
         </p>
         <br>
         <p class="center">
