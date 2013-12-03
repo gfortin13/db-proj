@@ -51,4 +51,11 @@ class Steve_model extends CI_Model {
 		$row = $query->row();
 		return $row->location;
 	}
+
+	public function getArticlesByUser($userID){
+		$sql = "SELECT * FROM Article INNER JOIN Submits on Article.articleID = Submits.articleID where Submits.userID = $userID";
+
+		$query = $this->db1->query($sql);
+		return $query->result_array();
+	}
 }
