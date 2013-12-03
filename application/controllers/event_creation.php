@@ -58,7 +58,7 @@ class Event_creation extends CI_Controller {
 				$data['event']['eventID'] = $data['eventID'];
 
 				$data['program_chair'] = $this->program_chair;
-				$data['roleID'] = $this->data_model->getRoleID("program chair");
+				$data['roleID'] = $this->data_model->getRoleID("Program Chair");
 				$data['program_chair']['roleID'] = $data['roleID'];	
 
 				$this->data_model->registerToEvent($data['event'], $data['program_chair']);
