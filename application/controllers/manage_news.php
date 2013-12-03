@@ -16,6 +16,9 @@ class Manage_news extends CI_Controller {
 
 	public function displayNewsToUpdate($newsID)
 	{
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+		
 		$data['news'] =  $this->phil_model->getNewsById($newsID);
 
 		$this->load->view('header', $data);

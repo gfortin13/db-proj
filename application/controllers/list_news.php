@@ -10,6 +10,9 @@ class List_news extends CI_Controller {
 		}
 	public function index()
 	{
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+		
 		$data['admin'] = $this->session->userdata('admin_logged');
 		if(isset($data['admin'])){
 			$data['globalNews'] = $this->data_model->getGlobalNews();

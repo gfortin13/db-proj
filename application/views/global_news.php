@@ -10,7 +10,7 @@
 		    <tr>
 		    	<?php echo form_open('manage_news/deleteNews'.$news['newsID']) ?>
 
-					<td  width="200"><a href="#"><?php echo $news['title'] ?></a></td>
+					<td  width="200"><a href="<?php echo "index.php?/manage_news/displayNewsToUpdate/" . $news['newsID'] ?>"><?php echo $news['title'] ?></a></td>
 					<td width="400"><?php echo $news['content'] ?></td>
 					<td><?php echo $news['postDate'] ?></td>
 					<td padding="10">
