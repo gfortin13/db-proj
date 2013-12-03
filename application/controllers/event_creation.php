@@ -36,7 +36,7 @@ class Event_creation extends CI_Controller {
 			$this->form_validation->set_rules('hierarchy', 'Hierarchy', 'trim|xss_clean');
 			$this->form_validation->set_rules('start_date', 'Start Date', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('end_date', 'Start Date', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('submissioin_start_date', 'Submission Start Date', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('submission_start_date', 'Submission Start Date', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('submission_end_date', 'Submission End Date', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('review_start_date', 'Review Start Date', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('review_end_date', 'Review End Date', 'trim|required|xss_clean');
