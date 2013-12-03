@@ -56,6 +56,7 @@ class Review_article extends CI_Controller {
 	public function update($articleID)
 	{
 		$this->load->helper('form');
+		
 		$this->load->library('form_validation');
 
 		$userLoggedIn = $this->session->userdata('logged_in');
