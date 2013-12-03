@@ -127,7 +127,7 @@ class Data_model extends CI_Model {
  	public function getConferenceNews($confID)
 	{
 		$sql = "SELECT n.title AS title, n.content AS content, n.postDate as postDate FROM News n, ConfNews c WHERE n.newsID = c.newsID AND c.confID = '$confID'";
-		$query = $this=>db1->query($sql);
+		$query = $this->db1->query($sql);
 		return $query->row_array();
 	}
 }
