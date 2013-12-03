@@ -4,32 +4,39 @@
 			<h2>Conference</h2>
 			<ul style="list-style-type: circle">
 				<?php foreach($conferences as $conference) {?>
-					<li><a href="<?php echo site_url('home/home/'.$conference['confID']); ?>"><?php echo $conference['title']; ?></a></li>
+					<li><a href="<?php echo site_url('home/front/'.$conference['confID']); ?>"><?php echo $conference['title']; ?></a></li>
 				<?php } ?>
 			</ul>
 		</div>
 		<div class="r">
+			<h2>Conference News</h2>
 			<?php if (isset($conference_news)) {
 				foreach($conference_news as $news) { ?>
-					<h2><?php $news['title']; ?></h2>
-					<p><?php $news['description']; ?></p>
+					<h3><?php echo $news['title']; ?></h3>
+					<p><?php echo $news['content']; ?></p>
 				<?php }
 			}
 			else{
-
+				echo "<p>No news</p>";
 			}?>
-			
-			<h2>Nemo enim ipsam voluptatem</h2>
-			<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			<h2>Sed ut perspiciatis unde omnis</h2>
-			<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 		</div>
 	
 		<div class="line"></div>
 	
 		<div class="l">
 			<h2>Upcoming Events:</h2>
-			<p>list stuff here 1</p>
+			<?php if (sizeof($conference_events) == 0) {
+				echo "<p>No events created</p>";
+			}
+			elseif (isset($conference_events)) {
+				foreach($conference_events as $event) { ?>
+					<?php echo $event['title']; ?> - <a href="#">Register</a><br/>
+				<?php }
+			}
+			else{
+				echo "<p>Select an events</p>";
+			}?>
+			<br/>
 		</div>
 		<div class="r">
 			<h2>My Events</h2>
@@ -38,9 +45,10 @@
 	</div>
 	
 	<div id="side">
+		<h2>Global News</h2>
 		<ul>
-			<?php foreach($global_news as $news) {?>
-				<li><a href="#"><?php $news['title']; ?></a><br /><?php $news['description']; ?></li>
+			<?php foreach($global_news as $news) { ?>
+				<li><h3><?php echo $news['title']; ?></h3><?php echo $news['content']; ?></li>
 			<?php } ?>
 		</ul>
 	</div>

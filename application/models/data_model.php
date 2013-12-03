@@ -66,7 +66,7 @@ class Data_model extends CI_Model {
 	}
 	
 	public function validateUser($email){
-		$sql ="UPDATE User SET validated = 1 WHERE email = $email";
+		$sql ="UPDATE User SET validated = 1 WHERE email = '$email'";
 
 		$this->db1->query($sql);
 	}
@@ -123,7 +123,7 @@ class Data_model extends CI_Model {
 	}
 
 	public function getGlobalNews(){
-		$sql = "SELECT n.title AS title, n.content AS content, n.postDate as postDate FROM News n, GlobalNews g WHERE n.newsID = g.newsID " ;
+		$sql = "SELECT n.newsID as newsID, n.title AS title, n.content AS content, n.postDate as postDate FROM News n, GlobalNews g WHERE n.newsID = g.newsID " ;
 		$query = $this->db1->query($sql);
 
 		return $query->result_array();
@@ -131,7 +131,7 @@ class Data_model extends CI_Model {
 
  	public function getConferenceNews($confID)
 	{
-		$sql = "SELECT n.title AS title, n.content AS content, n.postDate as postDate FROM News n, ConfNews c WHERE n.newsID = c.newsID AND c.confID = '$confID'";
+		$sql = "SELECT n.newsID as newsID, n.title AS title, n.content AS content, n.postDate as postDate FROM News n, ConfNews c WHERE n.newsID = c.newsID AND c.confID = '$confID'";
 		$query = $this->db1->query($sql);
 		return $query->result_array();
 	}
@@ -180,4 +180,17 @@ class Data_model extends CI_Model {
 		}
 	}
 
+	public function getConferenceEvents($confID){
+		$sql = "SELECT * FROM Events WHERE confID = '$confID' LIMIT 10";
+
+		$query = $this->db1->query($sql);
+		if ($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
