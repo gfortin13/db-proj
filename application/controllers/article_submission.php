@@ -1,14 +1,15 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Article_submition extends CI_Controller
+class Article_submission extends CI_Controller
 {
 	var $data;
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('data_model');
-		//$this->load->model('readonly_model');
+		$this->load->model('article_submission_model');
+		$this->load->model('readonly_model');
+
 	}
 
 	public function index()
@@ -19,13 +20,13 @@ class Article_submition extends CI_Controller
 		//$this->data['user'] = $this->session->userdata('logged_in');
 		$this->data['user']['email'] = "test@test.com";
 
-		if (empty($this->data['user']))
+		if (empty($this->data['user']) || !$this->validateAuthor())
 		{
-			$this->showPage();
+			$this->show('article_submission_invalid');
 		}
-		else if($this->validateAuthor())
+		else
 		{
-			$this->showPage();
+			$this->show();
 		}
 	}
 
@@ -34,20 +35,36 @@ class Article_submition extends CI_Controller
 		$this->loadHelperModules();
 		$this->setPageTitles();
 
-		$this->form_validation->set_rules('paper_title', 'Paper_title', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('paper_abstract', 'Paper_abstract', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('paper_file', 'Paper_file', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('key_words', 'Key_words', 'trim|required|xss_clean');
+		$config['upload_path'] = './article_upload/';
+		$config['allowed_types'] = 'pdf';
+		$config['max_size']	= '0';
+		$config['max_width']  = '0';
+		$config['max_height']  = '0';
+		$config['file_name'] = ($this->article_submission_model->getMaxFileID() + 1).".pdf";
 
-		if ($this->form_validation->run() === FALSE)
+		$this->load->library('upload', $config);
+
+		$this->form_validation->set_rules('paper_title', 'Paper Title', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('paper_abstract', 'Paper Abstract', 'trim|required|xss_clean');
+		$this->data['u_file'] = $_FILES['paper_file'];
+		$this->data['u_file']['location'] = $config['upload_path']."".$config['file_name'];
+
+		if ($this->form_validation->run() !== FALSE && !empty($this->data['u_file']) && $this->upload->do_upload('paper_file'))
 		{
-			$this->showPage();
+			//$this->load->helper('file');
+
+			$this->data['fields'] = $this->input->post();
+			//$content = read_file($this->data['u_file']['tmp_name']);
+			//$content = addslashes($content);
+			//$this->data['u_file']['content'] = $content;
+
+			$this->article_submission_model->submitPaper($this->data['fields'], $this->data['u_file']);
+
+			$this->show('article_submission_complete');
 		}
 		else
 		{
-			$this->load->view('header', $this->data);
-			$this->load->view('article_submition');
-			$this->load->view('footer');
+			$this->show();
 		}
 	}
 
@@ -55,18 +72,19 @@ class Article_submition extends CI_Controller
 	{
 		$this->load->helper('form');
 		$this->load->library('form_validation');
+		$this->load->helper(array('form', 'url'));
 	}
 
 	private function setPageTitles()
 	{
-		$this->data['title'] = 'Article Submition';
-		$this->data['page_title'] = "Article Submition";
+		$this->data['title'] = 'Article Submission';
+		$this->data['page_title'] = "Article Submission";
 	}
 
-	private function showPage()
+	private function show($page = 'article_submission', $errors = NULL)
 	{
 		$this->load->view('header', $this->data);
-		$this->load->view('article_submition');
+		$this->load->view($page, $errors);
 		$this->load->view('footer');
 	}
 

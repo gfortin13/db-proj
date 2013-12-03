@@ -4,7 +4,7 @@
             <?php echo validation_errors(); ?>
     	</div>
 
-    	<?php echo form_open('article_submition/submit') ?>
+    	<?php echo form_open_multipart('article_submission/submit') ?>
     		<p>
                 <label for="paper_title">Paper Title: </label> 
                 <input type="input" size="30" name="paper_title" value="<?php echo set_value('paper_title'); ?>" /> <span class="red">*</span>
@@ -15,14 +15,10 @@
             </p>
             <p>
                 <label for="paper_file">File: </label> 
-                <input type="file" name="paper_file" value="<?php echo set_value('paper_file'); ?>" /> <span class="red">*</span>
+                <input type="file" id="paper_file" name="paper_file" value="<?php echo set_value('paper_file'); ?>" /> <span class="red">*</span>
             </p>
             <p>
-                <label for="key_words">Keywords (3 separated by commas): </label> 
-                <input type="input" name="key_words" value="<?php echo set_value('key_words'); ?>" /> <span class="red">*</span>
-            </p>
-            <p>
-                <label for="subjects">Paper subjects: </label> 
+                <label for="subjects">Paper Subjects: </label> 
                 <input type="button" name="subjects" value="Select Paper Subjects" /> <span class="red">*</span>
                 <label>(click to see list)</label>
             </p>
