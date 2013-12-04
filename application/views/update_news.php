@@ -9,5 +9,6 @@
 		Post Date : <input type="text" name="postDate" value="<?php echo $news['postDate']?>"/><br/>
 		<input type="hidden" name="newsID" value="<?php echo $news['newsID']?>"/>
 		<input type="submit" value="Submit Changes"/>
-	</form>
+	</form><br/>
+		<a href="<?php echo "index.php?/list_news"?>">Back to Global News</a>
 </div>

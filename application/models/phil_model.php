@@ -19,14 +19,41 @@ class Phil_model extends CI_Model {
 
 		$this->db1->query($sql);
 	}
-	public function deleteGlobalNews($news)
+	public function deleteGlobalNews($newsID)
 	{
-		$newsID = $news['newsID'];
 		$sql = "DELETE FROM News
 				WHERE newsID='$newsID'";
 
 		$this->db1->query($sql);
 	}
+	public function createNews($news)
+	{
+		$title = $news['title'];
+		$content = $news['content'];
+		$postDate = $news['postDate'];
+
+		$sql = "INSERT INTO News (title, content, postDate) 
+				VALUES ('" . $title . "', '" . $content . "', '" . $postDate . "')";
+
+		$this->db1->query($sql);
+
+		$sql = "SELECT newsID 
+				FROM News 
+				WHERE title = '$title' AND content = '$content' AND postDate = '$postDate' 
+				LIMIT 1";
+		
+		$this->db1->query($sql);
+	}
+
+	public function getNewsById($newsID)
+	{
+		$sql = "SELECT newsID, title, content, postDate FROM News WHERE newsID = '$newsID'";
+	
+		$query = $this->db1->query($sql);
+
+		return $query->row_array();
+	}
+
 	public function createGlobalNews($news)
 	{
 		$title = $news['title'];
@@ -53,14 +80,5 @@ class Phil_model extends CI_Model {
 				VALUES ('" . $newsID . "')";
 
 		$this->db1->query($sql);
-	}
-
-	public function getNewsById($newsID)
-	{
-		$sql = "SELECT newsID, title, content, postDate FROM News WHERE newsID = '$newsID'";
-	
-		$query = $this->db1->query($sql);
-
-		return $query->row_array();
 	}
 }

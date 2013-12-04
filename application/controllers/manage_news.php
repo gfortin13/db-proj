@@ -27,6 +27,17 @@ class Manage_news extends CI_Controller {
 
 	}
 
+	public function display_add_global_news()
+	{
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+
+
+		$this->load->view('header');
+		$this->load->view('add_global_news');
+		$this->load->view('footer');
+	}
+
 	public function update_news()
 	{
 		$this->load->helper('form');
@@ -70,22 +81,32 @@ class Manage_news extends CI_Controller {
 
 		$data['news'] = $this->input->post();
 
-		$this->phil_model->createGlobalNews($data['news']);
+		if ($this->form_validation->run() === FALSE)
+		{
+			$this->load->view('header');
+			$this->load->view('add_global_news');
+			$this->load->view('footer');	
+		}
+		else
+		{
+			$this->phil_model->createGlobalNews($data['news']);
 
-		$this->load->view('header', $data);
-		$this->load->view('add_global_news_complete');
-		$this->load->view('footer');
+			$data['title'] = 'Add Global News Complete';
+			$data['page_title'] = 'Add Global News Complete';
+			
+			$this->load->view('header', $data);
+			$this->load->view('add_global_news_complete');
+			$this->load->view('footer');
+		}
 	}
 
 	public function delete_news($newsID)
 	{
 		$this->phil_model->deleteGlobalNews($newsID);
 
-		$this->load->view('header', $data);
-		$this->load->view('update_news');
+		$this->load->view('header');
+		$this->load->view('delete_news_complete');
 		$this->load->view('footer');
 	}
-
-
 
 }
