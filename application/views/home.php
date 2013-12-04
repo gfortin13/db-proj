@@ -25,13 +25,16 @@
 	
 		<div class="l">
 			<h2>Upcoming Events:</h2>
-			<?php if (sizeof($conference_events) == 0) {
-				echo "<p>No events created</p>";
-			}
-			elseif (isset($conference_events)) {
-				foreach($conference_events as $event) { ?>
-					<?php echo $event['title']; ?> - <a href="#">Register</a><br/>
-				<?php }
+			<?php 
+			if (isset($conference_events)) {
+				if (!$conference_events) {
+					echo "<p>No events created</p>";
+				}
+				else{
+					foreach($conference_events as $event) { ?>
+						<?php echo $event['title']; ?> - <a href="#">Register</a><br/>
+					<?php }
+				}
 			}
 			else{
 				echo "<p>Select an events</p>";
