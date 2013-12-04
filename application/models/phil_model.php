@@ -29,8 +29,28 @@ class Phil_model extends CI_Model {
 	}
 	public function createGlobalNews($news)
 	{
+		$title = $news['title'];
+		$content = $news['content'];
+		$postDate = $news['postDate'];
+
 		$sql = "INSERT INTO News (title, content, postDate) 
-				VALUES ('" . $news['title'] . "', '" . $news['content'] . "', '" . $news['postDate'] . "')";
+				VALUES ('" . $title . "', '" . $content . "', '" . $postDate . "')";
+
+		$this->db1->query($sql);
+
+		$sql = "SELECT newsID 
+				FROM News 
+				WHERE title = '$title' AND content = '$content' AND postDate = '$postDate' 
+				LIMIT 1";
+		
+		$query = $this->db1->query($sql);
+
+		$newsIDResult = $query->row_array();
+
+		$newsID = $newsIDResult['newsID'];
+
+		$sql = "INSERT into GlobalNews (newsID)
+				VALUES ('" . $newsID . "')";
 
 		$this->db1->query($sql);
 	}

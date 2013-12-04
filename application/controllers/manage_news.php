@@ -70,7 +70,7 @@ class Manage_news extends CI_Controller {
 
 		$data['news'] = $this->input->post();
 
-		
+		$this->phil_model->createGlobalNews($data['news']);
 
 		$this->load->view('header', $data);
 		$this->load->view('add_global_news_complete');
