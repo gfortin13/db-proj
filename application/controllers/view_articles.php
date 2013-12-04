@@ -37,4 +37,14 @@ class View_articles extends CI_Controller {
 		$this->load->view('footer');
 
 	}
+
+	public function view_articles_from_event($eventID){
+		$data['articles'] = $this->steve_model->getArticlesByEvent($eventID);
+
+		$this->load->view('header', $data);
+		$this->load->view('view_event_articles');
+		$this->load->view('footer');	
+
+
+	}
 }

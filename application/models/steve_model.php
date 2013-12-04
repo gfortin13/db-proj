@@ -58,4 +58,11 @@ class Steve_model extends CI_Model {
 		$query = $this->db1->query($sql);
 		return $query->result_array();
 	}
+
+	public function getArticlesByEvent($eventID){
+		$sql = "SELECT * FROM Submits INNER JOIN Article ON Submits.articleID = Article.articleID WHERE Submits.eventID = $eventID";
+
+		$query = $this->db1->query($sql);
+		return $query->result_array();
+	}
 }
