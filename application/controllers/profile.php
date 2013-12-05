@@ -46,52 +46,59 @@ class Profile extends CI_Controller
 		$this->data['user'] = $this->session->userdata('logged_in');
 		$this->data['fields'] = $this->input->post();
 
-		$this->data['user_titles'] = array("Mr." => "Mr.", "Ms." => "Ms.");
-		$this->data['countries'] = $this->readonly_model->getAllCountries();
-		$this->data['organizations'] = $this->readonly_model->getAllOrganizations();
-		
-		$this->data['first_name'] = $this->data['fields']['first_name'];
-		$this->data['last_name'] = $this->data['fields']['last_name'];
-		$this->data['address'] = $this->data['fields']['address'];
-		$this->data['city'] = $this->data['fields']['city'];
-		$this->data['province'] = $this->data['fields']['province'];
-		$this->data['postalcode'] = $this->data['fields']['postcode'];
-		$this->data['email'] = $this->data['fields']['email'];
-		$this->data['department'] = $this->data['fields']['department'];
-		$this->data['title'] = $this->data['fields']['title'];
-		$this->data['countryID'] = $this->data['fields']['country'];
-		$this->data['orgID'] = $this->data['fields']['organization'];
-
-		if ($this->data['user']['user']['first_name'] != $this->data['fields']['first_name'] ||
-			$this->data['user']['user']['last_name'] != $this->data['fields']['last_name'] ||
-			$this->data['user']['user']['address'] != $this->data['fields']['address'] ||
-			$this->data['user']['user']['city'] != $this->data['fields']['city'] ||
-			$this->data['user']['user']['province'] != $this->data['fields']['province'] ||
-			$this->data['user']['user']['postal_code'] != $this->data['fields']['postcode'] ||
-			$this->data['user']['user']['email'] != $this->data['fields']['email'] ||
-			$this->data['user']['user']['department'] != $this->data['fields']['department'] ||
-			$this->data['user']['user']['title'] != $this->data['fields']['title'] ||
-			$this->data['user']['user']['countryID'] != $this->data['fields']['country'] ||
-			$this->data['user']['user']['orgID'] != $this->data['fields']['organization'])
+		if (!empty($this->data['fields']))
 		{
-			$this->data['user']['user']['first_name'] = $this->data['fields']['first_name'];
-			$this->data['user']['user']['last_name'] = $this->data['fields']['last_name'];
-			$this->data['user']['user']['address'] = $this->data['fields']['address'];
-			$this->data['user']['user']['city'] = $this->data['fields']['city'];
-			$this->data['user']['user']['province'] = $this->data['fields']['province'];
-			$this->data['user']['user']['postal_code'] = $this->data['fields']['postcode'];
-			$this->data['user']['user']['email'] = $this->data['fields']['email'];
-			$this->data['user']['user']['department'] = $this->data['fields']['department'];
-			$this->data['user']['user']['title'] = $this->data['fields']['title'];
-			$this->data['user']['user']['countryID'] = $this->data['fields']['country'];
-			$this->data['user']['user']['orgID'] = $this->data['fields']['organization'];
+			$this->data['user_titles'] = array("Mr." => "Mr.", "Ms." => "Ms.");
+			$this->data['countries'] = $this->readonly_model->getAllCountries();
+			$this->data['organizations'] = $this->readonly_model->getAllOrganizations();
+			
+			$this->data['first_name'] = $this->data['fields']['first_name'];
+			$this->data['last_name'] = $this->data['fields']['last_name'];
+			$this->data['address'] = $this->data['fields']['address'];
+			$this->data['city'] = $this->data['fields']['city'];
+			$this->data['province'] = $this->data['fields']['province'];
+			$this->data['postalcode'] = $this->data['fields']['postcode'];
+			$this->data['email'] = $this->data['fields']['email'];
+			$this->data['department'] = $this->data['fields']['department'];
+			$this->data['title'] = $this->data['fields']['title'];
+			$this->data['countryID'] = $this->data['fields']['country'];
+			$this->data['orgID'] = $this->data['fields']['organization'];
 
-			$this->profile_model->updateUser($this->data);
-			$this->session->set_userdata('logged_in', $this->data['user']);
+			if ($this->data['user']['user']['first_name'] != $this->data['fields']['first_name'] ||
+				$this->data['user']['user']['last_name'] != $this->data['fields']['last_name'] ||
+				$this->data['user']['user']['address'] != $this->data['fields']['address'] ||
+				$this->data['user']['user']['city'] != $this->data['fields']['city'] ||
+				$this->data['user']['user']['province'] != $this->data['fields']['province'] ||
+				$this->data['user']['user']['postal_code'] != $this->data['fields']['postcode'] ||
+				$this->data['user']['user']['email'] != $this->data['fields']['email'] ||
+				$this->data['user']['user']['department'] != $this->data['fields']['department'] ||
+				$this->data['user']['user']['title'] != $this->data['fields']['title'] ||
+				$this->data['user']['user']['countryID'] != $this->data['fields']['country'] ||
+				$this->data['user']['user']['orgID'] != $this->data['fields']['organization'])
+			{
+				$this->data['user']['user']['first_name'] = $this->data['fields']['first_name'];
+				$this->data['user']['user']['last_name'] = $this->data['fields']['last_name'];
+				$this->data['user']['user']['address'] = $this->data['fields']['address'];
+				$this->data['user']['user']['city'] = $this->data['fields']['city'];
+				$this->data['user']['user']['province'] = $this->data['fields']['province'];
+				$this->data['user']['user']['postal_code'] = $this->data['fields']['postcode'];
+				$this->data['user']['user']['email'] = $this->data['fields']['email'];
+				$this->data['user']['user']['department'] = $this->data['fields']['department'];
+				$this->data['user']['user']['title'] = $this->data['fields']['title'];
+				$this->data['user']['user']['countryID'] = $this->data['fields']['country'];
+				$this->data['user']['user']['orgID'] = $this->data['fields']['organization'];
+
+				$this->profile_model->updateUser($this->data);
+				$this->session->set_userdata('logged_in', $this->data['user']);
+			}
+			
+			$this->setPageTitles();
+			$this->show();
 		}
-		
-		$this->setPageTitles();
-		$this->show();
+		else
+		{
+			redirect('profile', 'refresh');
+		}
 	}
 
 	private function loadHelperModules()
