@@ -1,97 +1,106 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Profile extends CI_Controller {
+class Profile extends CI_Controller
+{
+	var $header;
+	var $data;
 
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->model('data_model');
 		$this->load->model('readonly_model');
+		$this->load->model('profile_model');
 	}
 
 	public function index()
 	{
+		$this->loadHelperModules();
+		$this->setPageTitles();		
+
+		$this->data['user'] = $this->session->userdata('logged_in');
+
+		$this->data['user_titles'] = array("Mr." => "Mr.", "Ms." => "Ms.");
+		$this->data['countries'] = $this->readonly_model->getAllCountries();
+		$this->data['organizations'] = $this->readonly_model->getAllOrganizations();
+		
+		$this->data['first_name'] = $this->data['user']['user']['first_name'];
+		$this->data['last_name'] = $this->data['user']['user']['last_name'];
+		$this->data['address'] = $this->data['user']['user']['address'];
+		$this->data['city'] = $this->data['user']['user']['city'];
+		$this->data['province'] = $this->data['user']['user']['province'];
+		$this->data['postalcode'] = $this->data['user']['user']['postal_code'];
+		$this->data['email'] = $this->data['user']['user']['email'];
+		$this->data['department'] = $this->data['user']['user']['department'];
+		$this->data['title'] = $this->data['user']['user']['title'];
+		$this->data['countryID'] = $this->data['user']['user']['countryID'];
+		$this->data['orgID'] = $this->data['user']['user']['orgID'];
+
+		$this->show();
+	}
+
+	public function update()
+	{
+		$this->loadHelperModules();
+
+		$this->data['user'] = $this->session->userdata('logged_in');
+		$this->data['fields'] = $this->input->post();
+
+		$this->data['user_titles'] = array("Mr." => "Mr.", "Ms." => "Ms.");
+		$this->data['countries'] = $this->readonly_model->getAllCountries();
+		$this->data['organizations'] = $this->readonly_model->getAllOrganizations();
+		
+		$this->data['first_name'] = $this->data['fields']['first_name'];
+		$this->data['last_name'] = $this->data['fields']['last_name'];
+		$this->data['address'] = $this->data['fields']['address'];
+		$this->data['city'] = $this->data['fields']['city'];
+		$this->data['province'] = $this->data['fields']['province'];
+		$this->data['postalcode'] = $this->data['fields']['postcode'];
+		$this->data['email'] = $this->data['fields']['email'];
+		$this->data['department'] = $this->data['fields']['department'];
+		$this->data['title'] = $this->data['fields']['title'];
+		$this->data['countryID'] = $this->data['fields']['country'];
+		$this->data['orgID'] = $this->data['fields']['organization'];
+
+		if ($this->data['user']['user']['first_name'] != $this->data['fields']['first_name'] ||
+			$this->data['user']['user']['last_name'] != $this->data['fields']['last_name'] ||
+			$this->data['user']['user']['address'] != $this->data['fields']['address'] ||
+			$this->data['user']['user']['city'] != $this->data['fields']['city'] ||
+			$this->data['user']['user']['province'] != $this->data['fields']['province'] ||
+			$this->data['user']['user']['postal_code'] != $this->data['fields']['postcode'] ||
+			$this->data['user']['user']['email'] != $this->data['fields']['email'] ||
+			$this->data['user']['user']['department'] != $this->data['fields']['department'] ||
+			$this->data['user']['user']['title'] != $this->data['fields']['title'] ||
+			$this->data['user']['user']['countryID'] != $this->data['fields']['country'] ||
+			$this->data['user']['user']['orgID'] != $this->data['fields']['organization'])
+		{
+			$this->profile_model->updateUser($this->data);
+			$this->setPageTitles('Profile Updated');
+			$this->show('profile_updated');
+		}
+		else
+		{
+			$this->setPageTitles();
+			$this->show();
+		}
+	}
+
+	private function loadHelperModules()
+	{
 		$this->load->helper('form');
 		$this->load->library('form_validation');
-
-		$data['title'] = 'User Profile';
-		$data['page_title'] = 'User Profile';
-
-		$data['user'] = $this->session->userdata('logged_in');
-
-		echo "User array: <br />";
-		print_r($data['user']);
-		echo "<br />";
-
-		$data['user_titles'] = array("Mr." => "Mr.", "Ms." => "Ms.");
-		$data['countries'] = $this->readonly_model->getAllCountries();
-		$data['organizations'] = $this->readonly_model->getAllOrganizations();
-
-		/*echo "<pre>";
-		print_r($data['countries']);
-		echo "</pre>";
-		die;*/
-		$this->form_validation->set_rules('title', 'Title', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('country', 'Country', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('organization', 'Organization', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('department', 'Department', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('address', 'Address', 'trim|xss_clean');
-		$this->form_validation->set_rules('city', 'City', 'trim|xss_clean');
-		$this->form_validation->set_rules('province', 'Province', 'trim|xss_clean');
-		$this->form_validation->set_rules('postcode', 'Postcode', 'trim|xss_clean');
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|xss_clean|callback_email_matches');
-		$this->form_validation->set_rules('conf_email', 'Confirm email', 'trim|required|xss_clean');
-
-		if ($this->form_validation->run() === FALSE)
-		{
-			$this->load->view('header', $data);
-			$this->load->view('profile');
-			$this->load->view('footer');	
-		}
-		else
-		{
-			$data['title'] = 'Registe Complete';
-			$data['page_title'] = 'Register Complete';
-			
-			$data['user']['password'] = $this->_generateRandomString(8);
-			$this->data_model->createUser($data['user']);
-			$newId = $this->data_model->getUserIdByEmail($data['user']['email']);
-			$data['user']['userId'] = $newId['userID'];
-
-			if(false){
-				mail($data['user']['email'], "Your user account", "Your user ID to connect is " . $newId);
-				mail($data['user']['email'], "Your user password", "Your user ID to connect is " . $data['user']['password']);
-				
-			}
-			$this->load->view('header', $data);
-			$this->load->view('register_complete');
-			$this->load->view('footer');
-		}
 	}
 
-	public function email_matches($email)
+	private function setPageTitles($default = 'User Profile')
 	{
-		$confirm_email = $this->input->post('conf_email');
-
-		if($email == $confirm_email)
-		{
-			return TRUE;
-		}
-		else
-		{
-			$this->form_validation->set_message('email_matches', 'Email does not match please verify.');
-		 	return false;
-		}
+		$this->header['title'] = $default;
+		$this->header['page_title'] = $default;
 	}
 
-	private function _generateRandomString($length = 10) {
-	    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	    $randomString = '';
-	    for ($i = 0; $i < $length; $i++) {
-	        $randomString .= $characters[rand(0, strlen($characters) - 1)];
-   		}
-    	return $randomString;
+	private function show($page = 'profile')
+	{
+		$this->load->view('header', $this->header);
+		$this->load->view($page, $this->data);
+		$this->load->view('footer');
 	}
 }
