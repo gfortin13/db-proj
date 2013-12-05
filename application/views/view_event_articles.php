@@ -13,4 +13,10 @@
         </table>
     <?php } ?>
 
+    <br />
+     <br />
+
+     <a href="javascript:history.back()">Back</a>
+
+
 </div>

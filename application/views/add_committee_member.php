@@ -17,5 +17,12 @@
         <p class="center">
             <input type="submit" name="submit" value="Add Committee Member" /> 
         </p>
-    </form> 
+    </form>
+
+
+    <br />
+     <br />
+
+     <a href="javascript:history.back()">Back</a>
+ 
 </div>

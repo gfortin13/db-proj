@@ -96,4 +96,10 @@
             <input type="submit" name="submit" value="Submit Review" /> 
         </p>
     </form> 
+
+    <br />
+     <br />
+
+     <a href="javascript:history.back()">Back</a>
+
 </div>

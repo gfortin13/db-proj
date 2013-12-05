@@ -92,4 +92,10 @@
             <input type="submit" name="submit" value="Update Review" /> 
         </p>
     </form> 
+
+    <br />
+     <br />
+
+     <a href="javascript:history.back()">Back</a>
+
 </div>
