@@ -30,6 +30,7 @@ class View_articles extends CI_Controller {
 		$this->load->library('form_validation');
 
 		$data['article'] = $this->steve_model->getArticleById($articleID);
+		$data['article']['authorName'] = $this->steve_model->getAuthorNameByArticle($articleID);
 
 
 		$this->load->view('header', $data);
@@ -40,6 +41,20 @@ class View_articles extends CI_Controller {
 
 	public function view_articles_from_event($eventID){
 		$data['articles'] = $this->steve_model->getArticlesByEvent($eventID);
+		$userLoggedIn = $this->session->userdata('logged_in');
+
+		foreach ($data['articles'] as &$article)
+		{
+			if ($this->steve_model->ifReviewExists($userLoggedIn['user']['userID'], $article['articleID']))
+			{
+				$article['urlMethod'] = "update";
+			}
+			else
+			{
+				$article['urlMethod'] = "review";
+			}
+		}
+
 
 		$this->load->view('header', $data);
 		$this->load->view('view_event_articles');

@@ -6,6 +6,9 @@
     <?php echo $article['abstract']; ?>
 
     <br />
+    Written by: 
+    <?php echo $article['authorName']; ?>
+    <br />
 
      <a href="<?php echo "index.php?/filedownload/file/" . $article['fileID'] ?>" target="_blank">Download this Article</a>
 

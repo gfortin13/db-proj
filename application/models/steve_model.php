@@ -65,4 +65,34 @@ class Steve_model extends CI_Model {
 		$query = $this->db1->query($sql);
 		return $query->result_array();
 	}
+
+	public function ifReviewExists($reviewerID, $articleID){
+		$sql = "SELECT COUNT(*) AS num FROM Reviews WHERE userID=$reviewerID AND articleID=$articleID";
+
+		$query = $this->db1->query($sql);
+		$row = $query->row();
+		
+		if($row->num > 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public function getAuthorNameByArticle($articleID){
+		$sql = "SELECT User.first_name, User.last_name from User INNER JOIN Submits ON Submits.userID = User.userID WHERE Submits.articleID = $articleID";
+
+		$query = $this->db1->query($sql);
+
+		if ($query->num_rows() > 0)
+		{
+			$row = $query->row();
+			$authorName = $row->first_name . " " . $row->last_name;
+			return $authorName;
+		}
+
+	}
 }
