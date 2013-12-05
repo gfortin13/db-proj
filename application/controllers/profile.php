@@ -74,15 +74,24 @@ class Profile extends CI_Controller
 			$this->data['user']['user']['countryID'] != $this->data['fields']['country'] ||
 			$this->data['user']['user']['orgID'] != $this->data['fields']['organization'])
 		{
+			$this->data['user']['user']['first_name'] = $this->data['fields']['first_name'];
+			$this->data['user']['user']['last_name'] = $this->data['fields']['last_name'];
+			$this->data['user']['user']['address'] = $this->data['fields']['address'];
+			$this->data['user']['user']['city'] = $this->data['fields']['city'];
+			$this->data['user']['user']['province'] = $this->data['fields']['province'];
+			$this->data['user']['user']['postal_code'] = $this->data['fields']['postcode'];
+			$this->data['user']['user']['email'] = $this->data['fields']['email'];
+			$this->data['user']['user']['department'] = $this->data['fields']['department'];
+			$this->data['user']['user']['title'] = $this->data['fields']['title'];
+			$this->data['user']['user']['countryID'] = $this->data['fields']['country'];
+			$this->data['user']['user']['orgID'] = $this->data['fields']['organization'];
+
 			$this->profile_model->updateUser($this->data);
-			$this->setPageTitles('Profile Updated');
-			$this->show('profile_updated');
+			$this->session->set_userdata('logged_in', $this->data['user']);
 		}
-		else
-		{
-			$this->setPageTitles();
-			$this->show();
-		}
+		
+		$this->setPageTitles();
+		$this->show();
 	}
 
 	private function loadHelperModules()
